@@ -1,10 +1,11 @@
-export default async function handler(req, res) {
-  const VERIFY_TOKEN = "kelly_agent_123"; // bạn sẽ dùng token này trong Facebook
+export default function handler(req, res) {
+  const VERIFY_TOKEN = "kelly_agent_123";
 
   if (req.method === "GET") {
-    const mode = req.query["hub.mode"];
-    const token = req.query["hub.verify_token"];
-    const challenge = req.query["hub.challenge"];
+    const params = new URLSearchParams(req.url.split('?')[1]);
+    const mode = params.get("hub.mode");
+    const token = params.get("hub.verify_token");
+    const challenge = params.get("hub.challenge");
 
     if (mode === "subscribe" && token === VERIFY_TOKEN) {
       return res.status(200).send(challenge);
@@ -14,11 +15,9 @@ export default async function handler(req, res) {
   }
 
   if (req.method === "POST") {
-    const body = req.body;
-    console.log("📩 Tin nhắn nhận được:", JSON.stringify(body, null, 2));
+    console.log("📩 Tin nhắn nhận được:", JSON.stringify(req.body, null, 2));
     return res.status(200).send("EVENT_RECEIVED");
   }
 
   return res.sendStatus(404);
 }
-add webhook file
