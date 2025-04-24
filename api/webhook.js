@@ -3,6 +3,7 @@ export default function handler(req, res) {
 
   if (req.method === "GET") {
     const { mode, token, challenge } = req.query;
+
     if (mode === "subscribe" && token === VERIFY_TOKEN) {
       return res.status(200).send(challenge);
     } else {
