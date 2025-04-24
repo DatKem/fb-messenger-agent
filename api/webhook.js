@@ -1,8 +1,8 @@
 export default function handler(req, res) {
   const VERIFY_TOKEN = "kelly_agent_123";
 
-const { mode, token, challenge } = req.query;
-
+  if (req.method === "GET") {
+    const { mode, token, challenge } = req.query;
 
     if (mode === "subscribe" && token === VERIFY_TOKEN) {
       return res.status(200).send(challenge);
