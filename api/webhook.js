@@ -3,15 +3,17 @@ export default async function handler(req, res) {
 
   if (req.method === "GET") {
     try {
-      const { mode, token, challenge } = req.query;
+      const mode = req.query["hub.mode"];
+      const token = req.query["hub.verify_token"];
+      const challenge = req.query["hub.challenge"];
 
       if (mode === "subscribe" && token === VERIFY_TOKEN) {
         return res.status(200).send(challenge);
       } else {
         return res.sendStatus(403);
       }
-    } catch (err) {
-      console.error("GET handler error:", err);
+    } catch (error) {
+      console.error("Error in GET:", error);
       return res.sendStatus(500);
     }
   }
@@ -20,8 +22,8 @@ export default async function handler(req, res) {
     try {
       console.log("📩 Tin nhắn nhận được:", JSON.stringify(req.body, null, 2));
       return res.status(200).send("EVENT_RECEIVED");
-    } catch (err) {
-      console.error("POST handler error:", err);
+    } catch (error) {
+      console.error("Error in POST:", error);
       return res.sendStatus(500);
     }
   }
