@@ -1,6 +1,6 @@
 export default async function handler(req, res) {
   const VERIFY_TOKEN = "kelly_agent_123"; // token xác minh webhook
-  const PAGE_ACCESS_TOKEN = "YOUR_PAGE_ACCESS_TOKEN"; // ⚡ bạn thay token của trang Facebook tại đây nhé
+  const PAGE_ACCESS_TOKEN = "EAARRumy3XLoBO99pB1efZCRBrXJYVlGHGnPMFbt2whfznkcovXBYhltZAxaftZCAvaQG0nMh5ZBlsgDGjTMJ9G1TL6E7A0J3QfuLvzdUR1aqnZC6puT9hP5v5xFgdZCjgydmsZACVl1yDJ2ZBuSoNHdYlFfufw2zYZCfl1u6BInZB8e4VXhdKibKkHQVTundrEs3vPaD20wH3jJAZCEmr3i0kQHqnqZBayQZD"; // ⚡ bạn thay token của trang Facebook tại đây nhé
 
   if (req.method === "GET") {
     try {
