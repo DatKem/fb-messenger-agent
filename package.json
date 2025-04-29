@@ -1,12 +1,12 @@
 {
   "name": "fb-messenger-agent",
   "version": "1.0.0",
-  "description": "Webhook nhận tin nhắn Facebook Messenger",
+  "description": "Webhook Facebook Messenger",
   "main": "api/webhook.js",
   "scripts": {
     "start": "node api/webhook.js"
   },
   "dependencies": {
-    "axios": "^1.5.0"
+    "axios": "^1.6.0"
   }
 }
