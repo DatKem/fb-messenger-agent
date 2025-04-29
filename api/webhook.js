@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export default async function handler(req, res) {
   const VERIFY_TOKEN = "kelly_agent_123"; // token xác minh webhook
-  const PAGE_ACCESS_TOKEN = "EAARRumy3XLoBO4DPPIMthxeaX6lZB6jhDxAqahjRAK1Xz4tGwlZApRXspYyeSSQekhmkw04hAQ0sIwFbsNZC4XFv82K6mBPE14WmDLmEvPxzM1B1dY8sf4k3L4Mxf3Pq6MyNFZC6FYwyRdJ1CjfpEci59wtU9WrCOmm3CL9rsrjlo3ATh2GM5NILT0EhTQBYBPf5MgRxeZB8yj5zonWE4O6slqUMZD" // <-- thay bằng Page Access Token của bạn
+  const PAGE_ACCESS_TOKEN = "EAARRumy3XLoBO4DPPIMthxeaX6lZB6jhDxAqahjRAK1Xz4tGwlZApRXspYyeSSQekhmkw04hAQ0sIwFbsNZC4XFv82K6mBPE14WmDLmEvPxzM1B1dY8sf4k3L4Mxf3Pq6MyNFZC6FYwyRdJ1CjfpEci59wtU9WrCOmm3CL9rsrjlo3ATh2GM5NILT0EhTQBYBPf5MgRxeZB8yj5zonWE4O6slqUMZD"; // <-- thay bằng Page Access Token của bạn
 
   if (req.method === "GET") {
     try {
@@ -34,10 +34,9 @@ export default async function handler(req, res) {
             if (messagingEvent.message && messagingEvent.message.text) {
               const receivedMessage = messagingEvent.message.text;
 
-              // 👉 Tạo nội dung trả lời
               let replyText = `Dạ shop đã nhận được tin nhắn: "${receivedMessage}". Shop sẽ phản hồi chị ngay nhé!`;
 
-              // 👉 Gửi tin nhắn trả lời
+              // Gửi tin nhắn trả lời
               await axios.post(`https://graph.facebook.com/v19.0/me/messages?access_token=${PAGE_ACCESS_TOKEN}`, {
                 recipient: { id: senderId },
                 message: { text: replyText }
